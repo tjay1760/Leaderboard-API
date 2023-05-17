@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import scoreboard from '../modules/display.js';
 import './index.css';
 
@@ -18,7 +17,7 @@ const getScores = async () => {
   try {
     const gameId = getGameId();
     if (!gameId) {
-      console.error('No game ID found');
+      scoreboard.innerHTML = 'GAME NOT FOUND';
       return;
     }
     const scoresEndpoint = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${gameId}/scores`;
@@ -28,38 +27,25 @@ const getScores = async () => {
     scoreboard.innerHTML = '';
     // Check if there are scores available
     if (data.result.length === 0) {
-      const noScoresMessage = document.createElement('li');
+      const noScoresMessage = document.createElement('div');
       noScoresMessage.innerText = 'No scores available yet';
       scoreboard.appendChild(noScoresMessage);
     } else {
       // Iterate over the score data and create a new element for each score
       data.result.forEach((score) => {
-        const scoreElement = document.createElement('li');
-        const playerElement = document.createElement('span');
-        const scoreValueElement = document.createElement('span');
-
-        playerElement.innerText = score.user;
-        playerElement.classList.add('player-display');
-
-        scoreValueElement.innerText = score.score;
-        scoreValueElement.classList.add('score-display');
-
-        scoreElement.appendChild(playerElement);
-        scoreElement.appendChild(scoreValueElement);
-        scoreElement.classList.add('scorelist');
-
+        const scoreElement = document.createElement('div');
+        scoreElement.innerText = `Player: ${score.user} - Score: ${score.score}`;
         scoreboard.appendChild(scoreElement);
       });
     }
   } catch (error) {
-    console.error('Error fetching scores:', error);
+    scoreboard.innerHTML = 'Error fetching scores';
   }
 };
 const createGame = async () => {
   try {
     const gameId = getGameId();
     if (gameId) {
-      console.log('Game ID already exists:', gameId);
       getScores(); // fetch the scores for the existing game
       return;
     }
@@ -76,10 +62,9 @@ const createGame = async () => {
     const newGameId = data.result.split(': ')[1];
 
     setGameId(newGameId); // Store the game ID in local storage
-    console.log('New game created with ID:', newGameId);
     getScores(); // fetch the scores for the new game
   } catch (error) {
-    console.error('Error creating game:', error);
+    scoreboard.innerHTML = 'Error creating game';
   }
 };
 
@@ -96,7 +81,7 @@ submitButton.addEventListener('click', (event) => {
 
   const gameId = getGameId();
   if (!gameId) {
-    console.error('No game ID found');
+    scoreboard.innerHTML = ' Game ID not found';
     return;
   }
 
@@ -114,10 +99,11 @@ submitButton.addEventListener('click', (event) => {
     }),
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log('Score submitted:', data);
+    .then(() => {
       nameInput.value = '';
       scoreInput.value = '';
     })
-    .catch((error) => console.error('Error submitting score:', error));
+    .catch(() => {
+      scoreboard.innerHTML = 'Error fetching scores';
+    });
 });
