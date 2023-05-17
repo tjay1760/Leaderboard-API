@@ -8,24 +8,31 @@
     <link rel="stylesheet" href="index.css" type="text/css">
 </head>
 <body>
-    <h1>Leaderboard</h1>
+    <header>
+        <h1>Leaderboard</h1>
+    </header>
+    
     <div class="scores">
         <div class="recent-scores">
-            <h2>Recent scores</h2>
-            <button type="reset" class="refresh">Refresh</button>
+            <div class="recent-scores-header">
+                <h2 class="recent-scores-text">Recent scores</h2>
+                <button type="reset" class="refresh">Refresh</button>
+            </div>
             <ul class="scoreboard">
             </ul>
         </div>
         <form class="add-score">
-            <h2>Add your score</h2>
+            <h2 class="add-score-header">Add your score</h2>
             <div class="score-inputs">
-                <input type="text" class="name" placeholder="Your Name">
-                <input type="text" class="score" placeholder="Your Score">
+                <input type="text" class="name" placeholder="You Name"></input>
+                <input type="text" class="score" placeholder="Your Score"></input>
             </div>
             <button type="submit" class="submit">Submit</button>
         </form>
     </div>
 
 </body>
-<script type="module" src="index.js"></script>
+<script type= "module" src="./index.js">
+
+</script>
 </html>
