@@ -1,26 +1,52 @@
-.recent-score-list {
+body {
+  background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1124&q=100');
+  background-position: center;
+  background-size: cover;
+}
+
+header {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+h1 {
+  color: #f3e8e8;
+  margin-left: 2%;
+}
+
+.score-display {
+  background-color: #34a654;
+  padding: 2% 5%;
+  border-radius: 22px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.scoreboard {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
   list-style-type: none;
-  border: 1px solid black;
+  border: 1px solid rgba(209, 213, 219, 0.3);
   width: 350px;
   margin-left: 0%;
   padding: 0%;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
-li {
-  padding: 5px;
+.scorelist {
+  display: flex;
+  justify-content: space-between;
+  padding: 3%;
 }
 
 .scores {
   display: flex;
-  gap: 5%;
-}
-
-.refresh {
-  margin-left: 82%;
-}
-
-.b {
-  background-color: grey;
+  gap: 17%;
 }
 
 .score-inputs {
@@ -28,4 +54,64 @@ li {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 5%;
+}
+
+button {
+  background-color: #44c767;
+  border-radius: 29px;
+  border: 1px solid #18ab29;
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  padding: 10px 31px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #2f6627;
+}
+
+button:hover {
+  background-color: #5cbf2a;
+}
+
+button:active {
+  position: relative;
+  top: 1px;
+}
+
+.recent-scores-text {
+  color: #f3e8e8;
+}
+
+.recent-scores-header {
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.refresh {
+  height: 20%;
+}
+
+.add-score {
+  margin-top: 8%;
+  padding: 2%;
+  height: 50%;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.add-score-header {
+  color: #000;
+  font-size: 40px;
+}
+
+input {
+  width: 250px;
+  height: 30px;
+  border-radius: 10px;
 }
