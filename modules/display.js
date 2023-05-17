@@ -1,2 +1,4 @@
-/* eslint-disable import/prefer-default-export */
-export const display = 'score';
+const scoreboard = document.querySelector('.scoreboard');
+scoreboard.textContent = '';
+
+export default scoreboard;
