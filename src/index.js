@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import scoreboard from '../modules/display.js';
 import './index.css';
 
@@ -18,7 +17,7 @@ const getScores = async () => {
   try {
     const gameId = getGameId();
     if (!gameId) {
-      console.error('No game ID found');
+      scoreboard.innerHTML = 'GAME NOT FOUND';
       return;
     }
     const scoresEndpoint = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${gameId}/scores`;
@@ -40,7 +39,7 @@ const getScores = async () => {
       });
     }
   } catch (error) {
-    console.error('Error fetching scores:', error);
+    scoreboard.innerHTML = 'Error fetching scores';
   }
 };
 const createGame = async () => {
@@ -65,7 +64,7 @@ const createGame = async () => {
     setGameId(newGameId); // Store the game ID in local storage
     getScores(); // fetch the scores for the new game
   } catch (error) {
-    console.error('Error creating game:', error);
+    scoreboard.innerHTML = 'Error creating game';
   }
 };
 
@@ -82,7 +81,7 @@ submitButton.addEventListener('click', (event) => {
 
   const gameId = getGameId();
   if (!gameId) {
-    console.error('No game ID found');
+    scoreboard.innerHTML = ' Game ID not found';
     return;
   }
 
@@ -100,10 +99,11 @@ submitButton.addEventListener('click', (event) => {
     }),
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log('Score submitted:', data);
+    .then(() => {
       nameInput.value = '';
       scoreInput.value = '';
     })
-    .catch((error) => console.error('Error submitting score:', error));
+    .catch(() => {
+      scoreboard.innerHTML = 'Error fetching scores';
+    });
 });
